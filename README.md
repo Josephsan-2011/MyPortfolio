@@ -155,7 +155,7 @@ Consider adding these features later:
 ## 📧 Contact Information
 
 **Joseph San**
-- Phone: (515) 452-2774
+- Phone: (515) 718-6102
 - Email: 1josephsan@gmail.com
 - Location: Iowa, USA
 

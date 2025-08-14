@@ -3,236 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joseph San - Web Developer & Dreamer</title>
+    <meta name="color-scheme" content="light dark">
+    <title>Portfolio • Jo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>Joseph San</h2>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <img src="logo.png" alt="Logo" class="brand-logo" width="36" height="36">
+                <span class="brand-name">Jo</span>
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#services" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <nav class="site-nav" aria-label="Primary">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul id="nav-menu" class="nav-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="theme-switcher" role="group" aria-label="Theme switcher">
+                <button class="theme-btn" data-theme="light" aria-label="Light theme">◑</button>
+                <button class="theme-btn" data-theme="dark" aria-label="Dark theme">◐</button>
+                <button class="theme-btn" data-theme="glass" aria-label="Liquid glass theme">◎</button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Hi, I'm <span class="highlight">Joseph San</span>
-                </h1>
-                <p class="hero-subtitle">Web Developer & World Traveler in the Making</p>
-                <p class="hero-description">
-                    A web developer from Iowa, passionate about creating beautiful websites 
-                    and dreaming of exploring the world with family and friends.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
+    <main id="main">
+        <section class="hero" aria-label="Intro">
+            <div class="parallax" aria-hidden="true">
+                <div class="layer l-back" data-parallax-speed="0.15"></div>
+                <div class="layer l-mid" data-parallax-speed="0.3"></div>
+                <div class="layer l-front" data-parallax-speed="0.6"></div>
+            </div>
+            <div class="container hero-inner">
+                <div class="hero-content">
+                    <h1 class="fade-reveal">
+                        Creating elegant, performant web experiences
+                    </h1>
+                    <p class="lead fade-reveal" style="--fade-delay: 80ms;">
+                        I’m Jo — a frontend developer who blends minimalism with motion. I build responsive, accessible interfaces with a touch of liquid glass.
+                    </p>
+                    <div class="cta fade-reveal" style="--fade-delay: 160ms;">
+                        <a href="#projects" class="btn primary">View Projects</a>
+                        <a href="#contact" class="btn">Contact</a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-reveal" style="--fade-delay: 240ms;">
+                    <div class="glass-card avatar-card">
+                        <img src="logo.png" alt="Jo avatar" class="avatar" width="96" height="96">
+                        <div class="avatar-meta">
+                            <strong>Jo Webs</strong>
+                            <span>Frontend Developer</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="floating-card">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3>Global Dreams</h3>
-                    <p>From Iowa to the World</p>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="about-card">
-                        <h3>My Story</h3>
-                        <p>
-                            Born and raised in Iowa, I've discovered my passion for web development. 
-                            I love creating digital experiences that connect people and bring ideas to life through 
-                            beautiful, functional websites.
-                        </p>
-                    </div>
-                    <div class="about-card">
-                        <h3>My Background</h3>
-                        <p>
-                            Growing up in the heart of America, I've learned to appreciate different perspectives 
-                            and cultures. This helps me create websites that work for everyone, no matter where 
-                            they're from or what they need.
-                        </p>
-                    </div>
-                    <div class="about-card">
-                        <h3>My Dreams</h3>
-                        <p>
-                            My biggest dream is to travel the world with my family and friends, experiencing 
-                            different cultures, meeting new people, and creating memories that last a lifetime. 
-                            I believe technology can help make this world smaller and more connected.
-                        </p>
-                    </div>
+        <section id="about" class="section">
+            <div class="container grid-2">
+                <div class="fade-reveal">
+                    <h2>About</h2>
+                    <p>
+                        I specialize in building modern web apps with delightful micro-interactions. My focus areas include design systems, performance, and accessibility.
+                    </p>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Passionate</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Dedicated</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Dreams</div>
+                <div class="fade-reveal">
+                    <div class="glass-card stats">
+                        <div>
+                            <span class="stat">5+</span>
+                            <span class="label">Years Experience</span>
+                        </div>
+                        <div>
+                            <span class="stat">30+</span>
+                            <span class="label">Projects</span>
+                        </div>
+                        <div>
+                            <span class="stat">100ms</span>
+                            <span class="label">Target TTI</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">What I Can Do For You</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Website Development</h3>
-                    <p>I create beautiful, responsive websites that work perfectly on all devices. From simple landing pages to complex web applications, I bring your vision to life.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile-First Design</h3>
-                    <p>Every website I build is designed with mobile users in mind first, ensuring a great experience on phones, tablets, and desktop computers.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Custom Design</h3>
-                    <p>I don't use templates - every website is custom-designed to match your brand and vision perfectly.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Fast & Reliable</h3>
-                    <p>Your website will load quickly and be reliable, helping you attract and keep visitors.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Work Together</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Ready to bring your website dreams to life?</h3>
-                    <p>I'm excited to work with you and create something amazing together. Whether you need a simple website or something more complex, I'm here to help!</p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="fade-reveal">Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card glass-card fade-reveal">
+                        <div class="project-media">
+                            <img src="logo.png" alt="Beauty salon website preview" class="project-image">
+                        </div>
+                        <div class="project-body">
+                            <h3>Joe's Beauty Salon</h3>
+                            <p>Comprehensive beauty salon website featuring services, gallery, reviews, and booking system. Built with modern web technologies.</p>
+                            <div class="tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                                <span>Responsive</span>
                             </div>
-                            <div class="contact-details">
-                                <h4>Call Me</h4>
-                                <p><a href="tel:5157186102">(515) 718-6102</a></p>
-                            </div>
+                            <a href="https://josephsan-2011.github.io/beautyweb/" target="_blank" rel="noopener noreferrer" class="btn primary project-link">
+                                View Website
+                            </a>
                         </div>
-                        
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email Me</h4>
-                                <p><a href="mailto:1josephsan@gmail.com">1josephsan@gmail.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder="Your Phone (optional)">
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <h3>Joseph San</h3>
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="fade-reveal">Skills</h2>
+                <ul class="chip-list fade-reveal">
+                    <li>Semantic HTML</li>
+                    <li>Modern CSS</li>
+                    <li>JavaScript</li>
+                    <li>Animations</li>
+                    <li>Accessibility</li>
+                    <li>Performance</li>
+                    <li>Design Systems</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container grid-2">
+                <div class="fade-reveal">
+                    <h2>Contact</h2>
+                    <p>Have a project in mind or want to collaborate? Let’s talk.</p>
+                    <div class="contact-details glass-card" aria-label="Direct contact details">
+                        <ul class="contact-list">
+                            <li>
+                                <a href="tel:+15157186102" aria-label="Call phone number (515) 718-6102" class="btn">
+                                    Call: (515) 718-6102
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:1josephsan@gmail.com" aria-label="Email 1josephsan at gmail dot com" class="btn">
+                                    Email: 1josephsan@gmail.com
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <p>Web Developer & Dreamer</p>
-                    <p>Building Dreams from Iowa</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Phone: (515) 718-6102</p>
-                    <p>Email: 1josephsan@gmail.com</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Location</h4>
-                    <p>Iowa, USA</p>
-                </div>
+                <form class="contact-form glass-card fade-reveal" aria-label="Contact form">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="you@example.com" required>
+                    </label>
+                    <label class="full">
+                        <span>Message</span>
+                        <textarea name="message" rows="4" placeholder="Tell me about your project" required></textarea>
+                    </label>
+                    <button type="submit" class="btn primary">Send</button>
+                </form>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Joseph San. All rights reserved.</p>
-            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year"></span> Jo Webs. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

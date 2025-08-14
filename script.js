@@ -1,91 +1,123 @@
-// Mobile Navigation Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+// Helpers
+const $ = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+// Theme persistence
+const THEME_KEY = 'jo.theme';
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
+function setTheme(theme) {
+  const html = document.documentElement;
+  if (theme === 'system') {
+    html.removeAttribute('data-theme');
+  } else {
+    html.setAttribute('data-theme', theme);
+  }
+  try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+}
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+function initTheme() {
+  let saved = null;
+  try { saved = localStorage.getItem(THEME_KEY); } catch (_) {}
+  if (saved) {
+    setTheme(saved);
+  } else {
+    setTheme(prefersDark ? 'dark' : 'light');
+  }
+}
 
-// Form submission handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const phone = formData.get('phone');
-    const message = formData.get('message');
-    
-    // Simple validation
-    if (!name || !email || !message) {
-        alert('Please fill in all required fields.');
-        return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
-        return;
-    }
-    
-    // Here you would typically send the data to your server
-    // For now, we'll just show a success message
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    this.reset();
-});
-
-// Scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
+// Fade-in reveal using IntersectionObserver
+function initFadeReveal() {
+  const elements = $$('.fade-reveal');
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
     });
-}, observerOptions);
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+  elements.forEach(el => observer.observe(el));
+}
 
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.about-card, .service-card, .stat-item, .contact-method');
-    animatedElements.forEach(el => {
-        el.classList.add('fade-in');
-        observer.observe(el);
+// Parallax effect for hero layers
+function initParallax() {
+  const layers = $$('.parallax .layer');
+  if (layers.length === 0) return;
+
+  let ticking = false;
+  function updateParallax(scrollY) {
+    layers.forEach(layer => {
+      const speed = parseFloat(layer.dataset.parallaxSpeed || '0.2');
+      const translateY = Math.round(scrollY * speed);
+      layer.style.transform = `translate3d(0, ${translateY}px, 0)`;
     });
-});
-
-// Navbar background on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-    } else {
-        navbar.style.background = 'rgba(0, 0, 0, 0.8)';
+  }
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateParallax(window.scrollY || window.pageYOffset);
+        ticking = false;
+      });
+      ticking = true;
     }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+// Mobile nav toggle
+function initNavToggle() {
+  const nav = $('.site-nav');
+  const toggle = $('.nav-toggle');
+  if (!nav || !toggle) return;
+  toggle.addEventListener('click', () => {
+    const expanded = nav.getAttribute('aria-expanded') === 'true';
+    nav.setAttribute('aria-expanded', String(!expanded));
+    toggle.setAttribute('aria-expanded', String(!expanded));
+  });
+}
+
+// Theme buttons
+function initThemeButtons() {
+  $$('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', () => setTheme(btn.dataset.theme));
+  });
+}
+
+// Footer year
+function initYear() {
+  const yearSpan = $('#year');
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+}
+
+// Prevent default form submission for demo
+function initForm() {
+  const form = $('.contact-form');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const payload = Object.fromEntries(data.entries());
+    console.log('Contact form submission:', payload);
+    form.reset();
+    form.querySelector('button[type="submit"]').textContent = 'Sent ✔';
+    setTimeout(() => (form.querySelector('button[type="submit"]').textContent = 'Send'), 1600);
+  });
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initThemeButtons();
+  initFadeReveal();
+  initParallax();
+  initNavToggle();
+  initYear();
 });
+
+
